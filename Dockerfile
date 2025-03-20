@@ -20,6 +20,7 @@ COPY . .
 
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
+RUN composer require --dev phpunit/phpunit --no-interaction --prefer-dist
 
 # Copy and set permissions for entrypoint script
 COPY entrypoint.sh /entrypoint.sh
