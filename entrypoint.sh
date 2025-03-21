@@ -17,6 +17,16 @@ echo "Ensuring SQLite database file exists..."
 mkdir -p /var/www/html/database
 touch /var/www/html/database/database.sqlite
 
+# Ensure the .ssh directory exists
+echo "Ensuring SSH directory exists..."
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+
+# Fix GitHub SSH host key issues
+echo "Adding GitHub to known hosts..."
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+chmod 600 ~/.ssh/known_hosts
+
 # Run database migrations
 php artisan migrate --force
 
